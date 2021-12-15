@@ -1,0 +1,28 @@
+header h1 {
+    font-family: 'Another Day';
+    font-size: 6em;
+}
+
+header p {
+    font-weight: lighter;
+    font-size: 1.2em;
+}
+
+#coord p {
+    font-weight: 600;
+}
+
+#coord span {
+    font-style: italic;
+    color: coral;
+}
+
+body {
+    background: no-repeat bottom left url("img/background.webp");
+    background-size: 60%;
+}
+
+@font-face {
+    font-family: "Another Day";
+    src: url("font/another_day/AnotherDay.ttf") format("truetype");
+}
