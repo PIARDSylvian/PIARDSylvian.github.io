@@ -1,6 +1,7 @@
 header h1 {
     font-family: 'Another Day';
     font-size: 6em;
+    margin: 0;
 }
 
 header p {
@@ -30,7 +31,7 @@ body {
 
 @media screen and (max-width: 420px) {
     header h1 {
-        font-size: 22vw;
+        font-size: 18vw;
     }
 
     header p {
