@@ -6,6 +6,7 @@ header h1 {
 header p {
     font-weight: lighter;
     font-size: 1.2em;
+    white-space: nowrap;
 }
 
 #coord p {
@@ -25,4 +26,14 @@ body {
 @font-face {
     font-family: "Another Day";
     src: url("font/another_day/AnotherDay.ttf") format("truetype");
+}
+
+@media screen and (max-width: 420px) {
+    header h1 {
+        font-size: 22vw;
+    }
+
+    header p {
+        font-size: 5vw;
+    }
 }
