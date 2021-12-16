@@ -19,9 +19,19 @@ header p {
     color: coral;
 }
 
-body {
-    background: no-repeat bottom left url("img/background.webp");
+#first-section {
+    background: no-repeat bottom 4em left url("img/background.webp");
     background-size: 60%;
+}
+
+#second-section {
+    margin-bottom: 4em;
+}
+
+footer {
+    background-color: black;
+    color: coral;
+    height: 4em;
 }
 
 @font-face {
