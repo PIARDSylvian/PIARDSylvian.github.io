@@ -20,7 +20,7 @@ header p {
 }
 
 #first-section {
-    background: no-repeat bottom 4em left url("img/background.png");
+    background: no-repeat bottom left url("img/background.png");
     background-size: 60%;
 }
 
