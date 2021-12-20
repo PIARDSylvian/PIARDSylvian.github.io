@@ -20,18 +20,26 @@ header p {
 }
 
 #first-section {
-    background: no-repeat bottom left url("img/background.png");
-    background-size: 60%;
+    min-height: calc(100vh - 6em);
+    background: url("img/background_top.png") no-repeat bottom left;
+    background-size: 50%;
 }
 
 #second-section {
-    margin-bottom: 4em;
+    background: url("img/background_bottom.png") no-repeat top left;
+    background-size: 50%;
+    margin-bottom: 6em;
+}
+
+#style-1 {
+    background-color: #17a8c0;
 }
 
 footer {
     background-color: black;
     color: coral;
-    height: 4em;
+    height: 6em;
+    min-height: 6em;
 }
 
 @font-face {
