@@ -35,6 +35,10 @@ header p {
     background-color: #17a8c0;
 }
 
+.absolute-img {
+    bottom: -2em;
+}
+
 footer {
     background-color: black;
     color: coral;
