@@ -1,58 +1,130 @@
-header h1 {
-    font-family: 'Another Day';
-    font-size: 6em;
+* {
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: lightgray;
+}
+
+header {
+    text-align: center;
+    padding: 2em 0;
+    border-bottom: solid 1px lightgray;
+    background-color: darkgray;
+}
+
+section>p {
+    margin: 1em 0;
+    text-align: center;
+}
+
+#map {
+    height: 50vh;
+    min-height: 250px;
+    z-index: 1;
+}
+
+.hide {
+    display: none;
+}
+
+form {
+    margin: 0.5em;
+}
+
+form label {
+    margin-right: 0.5em;
+}
+
+#autocomplete {
+    position: absolute;
+    z-index: 2;
+    background-color: white;
+    padding: 1em 0;
+    border: solid 2px gray;
+    width: calc(100% - 4px);
+}
+
+#autocomplete div p {
+    text-align: center;
     margin: 0;
 }
 
-header p {
-    font-weight: lighter;
-    font-size: 1.2em;
-    white-space: nowrap;
+#autocomplete ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    row-gap: 0.5em;
+    justify-content: space-evenly
 }
 
-#coord p {
-    font-weight: 600;
+#autocomplete li {
+    border: solid 2px gray;
+    border-radius: 5px;
+    padding: 0.2em;
 }
 
-#coord span {
-    font-style: italic;
-    color: coral;
+#autocomplete li:hover {
+    cursor: pointer;
+    background-color: lightgray;
 }
 
-#first-section {
-    min-height: calc(100vh - 6em);
-    background: url("img/background_top.png") no-repeat bottom left;
-    background-size: 50%;
+#autocomplete span {
+    margin-left: 0.5em;
+    font-weight: bold;
 }
 
-#second-section {
-    background: url("img/background_bottom.png") no-repeat top left;
-    background-size: 50%;
-    margin-bottom: 6em;
+#weather ul {
+   text-align: center;
+   list-style: none;
+   padding: 0;
+   margin: 2em 0 0 0;
 }
 
-#style-1 {
-    background-color: #17a8c0;
+#weather li:first-child {
+    font-size: 3em;
 }
 
-footer {
-    background-color: black;
-    color: coral;
-    height: 6em;
-    min-height: 6em;
+.error {
+    background-color: lightcoral;
+    position: absolute;
+    bottom: 0.5em;
+    right: 0.5em;
+    margin: 0;
+    padding: 0.5em;
+    border: solid 2px red;
+    font-weight: bold;
 }
 
-@font-face {
-    font-family: "Another Day";
-    src: url("font/another_day/AnotherDay.ttf") format("truetype");
+section {
+    position: relative;
 }
 
-@media screen and (max-width: 420px) {
-    header h1 {
-        font-size: 18vw;
-    }
-
-    header p {
-        font-size: 5vw;
-    }
-}
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid transparent;
+    width: 5em;
+    height: 5em;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    position: absolute;
+    left: calc(50% - 4em);
+    bottom: 5em;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
