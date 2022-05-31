@@ -1,32 +1,48 @@
-/*
-init map
-*/
+/**
+ * Init openstreetmap
+ */
 var map = L.map('map').setView([48.52, 2.19], 5);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
 }).addTo(map);
 
-/*
-search form
-*/
-
-// Disable form submit
+/**
+ * Disable form submit
+ */
 document.getElementsByTagName('form')[0].addEventListener('submit', e => e.preventDefault());
 
+/**
+ * Find place by name
+ * 
+ * @param {string} name 
+ * @returns array of locations or null
+ */
 async function findByName(name) {
     if (name.length >= 3) {
       return (await apiCall('https://photon.komoot.io/api/?q=' + name)).features;
     }
 }
 
+/**
+ * Find place by coordinates
+ * 
+ * @param {array} coord 
+ * @returns one location or null
+ */
 async function findByCoord(coord) {
     if (coord) {
         return (await apiCall('https://photon.komoot.io/reverse?lon='+ coord.lng +'&lat='+ coord.lat+'&limit=1')).features[0];
     }
 }
 
-
+/**
+ * Timer for Api call
+ * 
+ * @param {function} callback 
+ * @param {number} delay 
+ * @returns callback return
+ */
 function debounce(callback, delay){
     var timer;
     return function(){
@@ -39,34 +55,48 @@ function debounce(callback, delay){
     }
 }
 
-const autocomplete = document.getElementById('autocomplete');
 
-async function clickOnSuggest() {
-    this.querySelector('span').remove()
-    makeMarker(this.dataset.lat, this.dataset.lng, this.textContent, true);
-    addWeather(await callWeather(this.dataset.lat, this.dataset.lng));
-    document.getElementById('search').value = this.textContent;
+const autocomplete = document.getElementById('autocomplete');
+const autocompleteList = autocomplete.querySelector('#autocomplete ul');
+autocompleteList.addEventListener("click", clickOnSuggest);
+
+/**
+ * Event on map click
+ * 
+ * @param {event} e 
+ */
+async function clickOnSuggest(e) {
+    let element;
+
+    if (e.path[0].querySelector('span') == null) {
+        element = e.path[1];
+    } else {
+        element = e.path[0];
+    }
+
+    element.querySelector('span').remove()
+    makeMarker(element.dataset.lat, element.dataset.lng, element.textContent, true);
+    addWeather(await callWeather(element.dataset.lat, element.dataset.lng));
+    document.getElementById('search').value = element.textContent;
     removeAutocomplete();
 }
 
+/**
+ * Hide Autocomplete 
+ */
 function removeAutocomplete() {
     autocomplete.classList.add('hide');
-
-    autocomplete.querySelectorAll('li').forEach(element => {
-        element.removeEventListener("click", clickOnSuggest);
-    });
-    
-    if (autocomplete.querySelector('ul')) {
-        autocomplete.querySelector('ul').remove();
-    }
 }
 
-
+/**
+ * Add autocomplete
+ * 
+ * @param {array} results 
+ */
 function addAutocomplete(results) {
     if(results) {
         autocomplete.classList.remove('hide');
-
-        let ul = document.createElement('ul');
+        autocompleteList.innerHTML = '';
 
         let suggests = results.map(result => {
             let li = document.createElement('li');
@@ -83,19 +113,20 @@ function addAutocomplete(results) {
             li.dataset.lat = result.geometry.coordinates[1];
 
             li.append(span)
-            li.addEventListener("click", clickOnSuggest);
             return li;
         });
-        ul.append(...suggests);
-        autocomplete.append(ul);
+        autocompleteList.append(...suggests);
     } else {
         removeAutocomplete()
     }
 }
 
+/**
+ * Add Listner on form and function on input change
+ * 
+ */
 document.getElementById('search').addEventListener('input', debounce(async function(){
     removeAutocomplete();
-
     const result = await findByName(this.value)
     addAutocomplete(result);
 }, 500));
@@ -103,6 +134,12 @@ document.getElementById('search').addEventListener('input', debounce(async funct
 /*
 marker on map
 */
+
+/**
+ * On map click event
+ * 
+ * @param {event} e 
+ */
 async function onMapClick(e) {
     removeAutocomplete();
     const result = await findByCoord(e.latlng)
@@ -122,24 +159,40 @@ async function onMapClick(e) {
 }
 
 let marker;
-function makeMarker(lat, lng, name, replace) {
+
+
+/**
+ * Add marker on map
+ * 
+ * @param {float} lat 
+ * @param {float} lng 
+ * @param {string} name 
+ * @param {bool} zoom 
+ */
+function makeMarker(lat, lng, name, zoom) {
     if(marker) {
         map.removeLayer(marker)
     }
     marker = new L.marker({lon: lng, lat: lat}).addTo(map);
 
-    if(replace) {
+    if(zoom) {
         map.setView({lon: lng, lat: lat}, 15)
     }
 
     marker.bindPopup(name).openPopup();
 }
 
+/**
+ * Add Listner on map
+ */
 map.addEventListener('click', onMapClick);
 
-/*
-apiCall function
-*/
+/**
+ * Call an API
+ * 
+ * @param {string} url 
+ * @returns result 
+ */
 async function apiCall(url) {
     spinner(true);
 
@@ -159,19 +212,32 @@ async function apiCall(url) {
 
 }
 
-
 /**
- * openweathermap
+ * Call openweathermap api
+ * 
+ * @param {float} lat 
+ * @param {float} lng 
+ * @returns array
  */
  async function callWeather(lat, lng) {
     return await apiCall('https://api.openweathermap.org/data/2.5/weather?lat='+ lat +'&lon='+ lng +'&appid=6f369add17e725b5dc06197f846dc38a&units=metric&lang=fr')
 }
 
-function addWeather(result) {
+/**
+ * Add display of weather
+ * 
+ * @param {array} location 
+ */
+function addWeather(location) {
     let weather = document.getElementById('weather');
-    weather.innerHTML = '<ul><li>'+ result.main.temp +' °C</li><li><img src="http://openweathermap.org/img/wn/'+ result.weather[0].icon +'@2x.png" alt="'+ result.weather[0].description +'"></li><li>'+ result.weather[0].description +'</li></ul>';
+    weather.innerHTML = '<ul><li>'+ location.main.temp +' °C</li><li><img src="http://openweathermap.org/img/wn/'+ location.weather[0].icon +'@2x.png" alt="'+ location.weather[0].description +'"></li><li>'+ location.weather[0].description +'</li></ul>';
 }
 
+/**
+ * Display error message
+ * 
+ * @param {string} message 
+ */
 function sendError(message) {
     if(marker) {
         map.removeLayer(marker)
@@ -189,6 +255,11 @@ function sendError(message) {
     }, 2000);
 }
 
+/**
+ * Add spinenr
+ * 
+ * @param {bool} active 
+ */
 function spinner(active) {
     let loader = document.createElement('div');
 
@@ -203,14 +274,12 @@ function spinner(active) {
     }
 }
 
-
-var options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
-  
-async function success(pos) {
+/**
+ * navigator location success
+ * 
+ * @param {array} pos 
+ */
+async function navigatorSuccess(pos) {
     const result = await findByCoord({lat: pos.coords.latitude, lng : pos.coords.longitude})
     let name;
     if (result){
@@ -225,10 +294,18 @@ async function success(pos) {
     } else {
         sendError('zone non couverte');
     }
-  }
-  
-  function error(err) {
-    sendError(err.code + ' : ' +  err.message);
-  }
+}
 
-navigator.geolocation.getCurrentPosition(success, error, options);
+/**
+ * navigator location error
+ * 
+ * @param {array} err
+ */
+function navigatorError(err) {
+    sendError(err.code + ' : ' +  err.message);
+}
+
+/**
+ * call api navigator location
+ */
+navigator.geolocation.getCurrentPosition(navigatorSuccess, navigatorError, {enableHighAccuracy: true, timeout: 5000, maximumAge: 0});
