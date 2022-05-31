@@ -1,26 +1,33 @@
 * {
     font-family: sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
     background-color: lightgray;
 }
 
 header {
-    text-align: center;
-    padding: 2em 0;
+    height: calc(10vh - 1px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-bottom: solid 1px lightgray;
     background-color: darkgray;
 }
 
-section>p {
-    margin: 1em 0;
+section>p, #autocomplete {
+    padding: 1em 0;
+}
+
+section>p, #autocomplete div p {
     text-align: center;
 }
 
+
 #map {
-    height: 50vh;
+    height: 45vh;
     min-height: 250px;
     z-index: 1;
 }
@@ -30,7 +37,7 @@ section>p {
 }
 
 form {
-    margin: 0.5em;
+    margin: 1em;
 }
 
 form label {
@@ -41,21 +48,16 @@ form label {
     position: absolute;
     z-index: 2;
     background-color: white;
-    padding: 1em 0;
     border: solid 2px gray;
     width: calc(100% - 4px);
 }
 
-#autocomplete div p {
-    text-align: center;
-    margin: 0;
+#autocomplete div hr {
+    margin: 1em 0;
 }
 
 #autocomplete ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
-
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -80,10 +82,13 @@ form label {
 }
 
 #weather ul {
-   text-align: center;
-   list-style: none;
-   padding: 0;
-   margin: 2em 0 0 0;
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 34vh;
+    min-height: 200px;
 }
 
 #weather li:first-child {
@@ -95,7 +100,6 @@ form label {
     position: absolute;
     bottom: 0.5em;
     right: 0.5em;
-    margin: 0;
     padding: 0.5em;
     border: solid 2px red;
     font-weight: bold;
@@ -103,6 +107,7 @@ form label {
 
 section {
     position: relative;
+    height: 90vh;
 }
 
 .loader {
