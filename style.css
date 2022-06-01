@@ -108,6 +108,8 @@ form label {
 section {
     position: relative;
     height: 90vh;
+    width: 50vw;
+    margin: 0 auto;
 }
 
 .loader {
@@ -121,15 +123,21 @@ section {
     position: absolute;
     left: calc(50% - 4em);
     bottom: 5em;
-  }
+}
   
-  /* Safari */
-  @-webkit-keyframes spin {
+/* Safari */
+@-webkit-keyframes spin {
     0% { -webkit-transform: rotate(0deg); }
     100% { -webkit-transform: rotate(360deg); }
-  }
-  
-  @keyframes spin {
+}
+
+@keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-  }
+}
+
+@media screen and (max-width: 800px) {
+    section {
+        width: 100%;
+    }
+}
