@@ -68,7 +68,9 @@ autocompleteList.addEventListener("click", clickOnSuggest);
 async function clickOnSuggest(e) {
     let element;
 
-    if (e.path[0].querySelector('span') == null) {
+    if (e.path[1].querySelector('strong')) {
+        return
+    } else if (e.path[0].querySelector('span') == null) {
         element = e.path[1];
     } else {
         element = e.path[0];
@@ -94,8 +96,8 @@ function removeAutocomplete() {
  * @param {array} results 
  */
 function addAutocomplete(results) {
-    if(results) {
-        autocomplete.classList.remove('hide');
+
+    if (results && results.length > 0) {
         autocompleteList.innerHTML = '';
 
         let suggests = results.map(result => {
@@ -116,6 +118,10 @@ function addAutocomplete(results) {
             return li;
         });
         autocompleteList.append(...suggests);
+        autocomplete.classList.remove('hide');
+    } else if (results && results.length == 0) {
+        autocompleteList.innerHTML = '<p><strong>Aucun résultats</strong></p>';
+        autocomplete.classList.remove('hide');
     } else {
         removeAutocomplete()
     }
@@ -144,7 +150,7 @@ async function onMapClick(e) {
     removeAutocomplete();
     const result = await findByCoord(e.latlng)
     let name;
-    if (result){
+    if (result) {
         if (result.properties.city) {
             name = result.properties.city
         } else {
@@ -170,12 +176,12 @@ let marker;
  * @param {bool} zoom 
  */
 function makeMarker(lat, lng, name, zoom) {
-    if(marker) {
+    if (marker) {
         map.removeLayer(marker)
     }
     marker = new L.marker({lon: lng, lat: lat}).addTo(map);
 
-    if(zoom) {
+    if (zoom) {
         map.setView({lon: lng, lat: lat}, 15)
     }
 
@@ -199,7 +205,7 @@ async function apiCall(url) {
     return await fetch(url, { method: 'GET', mode: 'cors'})
     .then(function(response) {
         spinner(false);
-        if(response.ok) {
+        if (response.ok) {
             return response.json()
         } else {
             sendError(response.statusText);
@@ -239,7 +245,7 @@ function addWeather(location) {
  * @param {string} message 
  */
 function sendError(message) {
-    if(marker) {
+    if (marker) {
         map.removeLayer(marker)
     }
     removeAutocomplete();
@@ -263,7 +269,7 @@ function sendError(message) {
 function spinner(active) {
     let loader = document.createElement('div');
 
-    if(active) {
+    if (active) {
         loader.classList.add('loader');
         document.body.appendChild(loader);
     } else {
@@ -282,7 +288,7 @@ function spinner(active) {
 async function navigatorSuccess(pos) {
     const result = await findByCoord({lat: pos.coords.latitude, lng : pos.coords.longitude})
     let name;
-    if (result){
+    if (result) {
         if (result.properties.city) {
             name = result.properties.city
         } else {
@@ -302,7 +308,7 @@ async function navigatorSuccess(pos) {
  * @param {array} err
  */
 function navigatorError(err) {
-    sendError(err.code + ' : ' +  err.message);
+    sendError(err.message);
 }
 
 /**
