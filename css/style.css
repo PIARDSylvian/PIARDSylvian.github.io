@@ -1,0 +1,565 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 1440px;
+}
+
+main section,
+body>header {
+    margin: 0 40px 40px;
+}
+
+/* HEADER */
+body>header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+body>header picture {
+    margin-left: 20px;
+    align-self: end;
+}
+
+body>header img {
+    width: 100px;
+}
+
+body>header nav ul {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+
+body>header nav ul li a {
+    padding: 30px 30px;
+    text-decoration: none;
+    display: inline-block;
+    border-top: transparent solid 2px;
+    font-weight: 500;
+    color: black;
+}
+
+body>header nav ul li a:visited {
+    color: black;
+}
+
+body>header nav ul li:hover a {
+    color: #0065FC;
+    border-top: #0065FC solid 2px;
+}
+
+/* Form */
+form {
+    display: flex;
+    margin: 30px 0;
+}
+
+form label {
+    display: flex;
+    padding: 0 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px 0 0 15px;
+    background-color: #F2F2F2;
+}
+
+form label,
+form input,
+form button {
+    height: 50px;
+    border: solid 1px #F2F2F2;
+    font-weight: bold;
+}
+
+form input {
+    padding: 0 20px;
+    border-left: 0;
+    border-right: 0;
+}
+
+form button {
+    border-radius: 0 15px 15px 0;
+    border-color: #0065FC;
+    background-color: #0065FC;
+    color: white;
+    padding: 0 20px;
+}
+
+form button:hover {
+    cursor: pointer;
+}
+
+form button.mobile {
+    border-radius: 15px;
+    display: none;
+}
+
+/* Search */
+
+#search-filters {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+
+#search-filters h2 {
+    font-size: 18px;
+    margin-right: 40px;
+}
+
+#search-filters ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.search-filter {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    border-radius: 25px;
+    border: solid 2px #F2F2F2;
+    margin-right: 40px;
+    margin-bottom: 20px;
+}
+
+.search-filter:last-of-type {
+    margin-right: 0;
+}
+
+.search-filter p {
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.search-filter p:first-letter {
+    text-transform: capitalize;
+}
+
+.search-filters-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;
+    background-color: #DEEBFF;
+    margin-left: -2px;
+}
+
+.search-filters-icon i {
+    color: #0065FC;
+}
+
+.search-filter:hover {
+    background-color: #DEEBFF;
+    border-color: #DEEBFF;
+    cursor: pointer;
+    
+}
+
+#search-count {
+    display: inline-flex;
+    align-items: baseline;
+}
+
+#search-count>div {
+    height: 25px;
+    width: 25px;
+    display: inline-flex;
+    border: #F2F2F2 solid 1px;
+    border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+#search-count i {
+    color: #0065FC;
+    font-size: 15px;
+}
+
+#search-count p {
+    margin: 20px 0 0 0;
+}
+
+.card {
+    width: 30%;
+    border-radius: 20px;
+    text-align: center;
+    background-color: white;
+    margin-bottom: 5%;
+    box-shadow: 0 0 10px 10px #F2F2F2;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    transition: transform .2s;
+}
+
+.card a {
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card img {
+    width: 100%;
+    height: 120px;
+    border: #F2F2F2 1px solid;
+    border-radius: 15px 15px 0 0;
+    object-fit: cover;
+}
+
+.card figure {
+    margin: 0;
+    display: flex;
+}
+
+.card h3 {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    margin: 2% 2% 0;
+}
+
+.card p {
+    text-align: left;
+    margin: 2% 2% 0;
+}
+
+.card p span {
+    font-weight: bold;
+}
+
+.card-rate {
+    text-align: left;
+    margin: auto 2% 2% 2%;
+}
+
+.card i[data-rate=true] {
+    color: #0065FC;
+}
+
+.card i[data-rate=false] {
+    color: #F2F2F2;
+}
+
+.card-rate i {
+    color: #F2F2F2;
+}
+
+section h1,
+aside h2 {
+    font-size: 22px;
+    display: flex;
+    justify-content: space-between;
+}
+
+aside .card {
+    width: 100%;
+    height: 150px;
+}
+
+aside .card:last-child {
+    margin-bottom: 0;
+}
+
+aside .card a {
+    flex-wrap: wrap;
+}
+
+aside .card figure {
+    width: 30%;
+    height: 100%;
+}
+
+aside .card img {
+    border-radius: 15px 0 0 15px;
+    height: auto;
+}
+
+aside .card h3,
+aside .card p,
+aside .card-rate {
+    margin : 2% 0 0 20px;
+    width: calc(70% - 20px);
+}
+
+aside .card .card-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+    width: 70%;
+}
+
+aside .card .card-rate {
+    margin-top: auto;
+}
+
+#accommodations {
+    display: flex;
+    column-gap: 30px;
+}
+
+#accommodations>div {
+    width: 66%;
+    padding: 30px;
+    background-color: #F2F2F2;
+    border-radius: 20px;
+}
+
+#accommodations>div>div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#accommodations>aside {
+    width: 33%;
+    padding: 30px;
+    background-color: #F2F2F2;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#accommodations>aside>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+#accommodations>div p:last-child {
+    margin: 0;
+}
+
+#accommodations div p:last-of-type a {
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+
+#activities>div {
+    display: flex;
+    gap: 20px;
+}
+
+.column .card {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.column .card a {
+    padding: 0;
+}
+
+.column figure {
+    display: contents;
+}
+
+.column .card img {
+    height: calc(100% - 50px);
+}
+
+.column .card-content {
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+.column h3 {
+    line-height: 50px;
+    margin: 0 20px;
+}
+
+.column:nth-child(2) .card {
+    height: calc(60% - 10px);
+    margin-bottom: 20px;
+}
+
+.column:nth-child(2) .card:last-of-type {
+    height: calc(40% - 10px);
+    margin-bottom: 0;
+}
+
+.column:nth-child(4) .card {
+    height: calc(50% - 10px);
+    margin-bottom: 20px;
+}
+
+.column:nth-child(4) .card:last-of-type {
+    margin-bottom: 0;
+}
+
+footer {
+    display: flex;
+    background-color: #F2F2F2;
+    padding: 40px;
+}
+
+footer>div {
+    flex: 1;
+}
+
+footer h2 {
+    font-size: 18px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer li {
+    margin-bottom: 10px;
+}
+
+footer a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Tab */
+@media screen and (max-width: 992px) {
+    #accommodations {
+        flex-direction: column-reverse;
+        row-gap: 30px;
+    }
+
+    #accommodations>div {
+        width: 100%;
+        padding: 4%;
+    }
+
+    .card {
+        width: 48%;
+        margin-bottom: 4%;
+    }
+
+    #accommodations>aside {
+        width: 100%;
+        padding: 4%;
+    }
+
+    aside .card {
+        height: 150px;
+        width: 100%;
+    }
+    
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    body>header {
+        flex-direction: column;
+        margin: 0 0 40px;
+    }
+
+    body>header picture {
+        align-self: center;
+        margin: 30px 0;
+    }
+
+    body>header nav {
+        width: 100%;
+    }
+
+    body>header nav li {
+        width: 50%;
+    }
+
+    body>header nav ul li a {
+        width: 100%;
+        padding: 20px 0;
+        text-align: center;
+        border-top: none;
+        border-bottom: #F2F2F2 solid 3px;
+    }
+
+    body>header nav ul li:hover a {
+        border-top: none;
+        border-bottom: #0065FC solid 3px;
+    }
+
+    form {
+        justify-content: center;
+        position: relative;
+    }
+
+    form input {
+        margin-right: 45px;
+        width: 100%;
+    }
+
+    form button {
+        display: none;
+    }
+
+    form button.mobile {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+    }
+
+    #search-filters h2 {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    #accommodations {
+        margin: 0;
+    }
+
+    #accommodations aside {
+        border-radius: 0;
+        padding: 40px;
+    }
+
+    #accommodations>div {
+        border-radius: 0;
+        background-color: white;
+        padding: 40px;
+    }
+
+    #activities>div {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    #activities .card {
+        margin-bottom: 40px;
+    }
+
+    .column figure {
+        display: flex;
+    }
+
+    .column .card img {
+        height: 300px;
+    }
+
+    footer {
+        flex-direction: column;
+    }
+}
