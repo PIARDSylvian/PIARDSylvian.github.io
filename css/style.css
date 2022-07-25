@@ -203,7 +203,7 @@ form button.mobile {
 .card {
     border-radius: var(--half-margin);
     background-color: white;
-    box-shadow: 0 0 var(--half-margin) var(--half-margin) #e1e1e1;
+    box-shadow: 0 0 var(--quarter-margin) var(--quarter-margin) #e1e1e1;
     transition: transform .2s;
 }
 
