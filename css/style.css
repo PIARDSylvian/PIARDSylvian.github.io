@@ -388,7 +388,7 @@ footer li:not(li:last-child) {
 }
 
 /* MOBILE */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     body>header {
         flex-direction: column;
         margin: 0 0 var(--margin);
