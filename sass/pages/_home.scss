@@ -1,0 +1,33 @@
+.location {
+    background-color: #c1c1c17a;
+    font-weight: bold;
+
+    @include flex( null, 'center');
+
+    &>p {
+        margin-left: $half-margin;
+    }
+}
+
+.presentation {
+    @include flex('column', 'center');
+    padding: $half-margin;
+    background-color: rgba(221, 221, 221, 0.50);
+
+    h1 {
+        margin: $margin $margin 0;
+        text-align: center;
+    }
+
+    p {
+        font-size: 1.2em;
+        text-align: center;
+        color: gray; 
+    }
+
+    button {
+        margin: 1em 0 2em;
+    }
+
+    
+}
